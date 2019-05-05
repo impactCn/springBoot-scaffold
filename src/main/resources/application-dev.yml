@@ -1,0 +1,69 @@
+spring:
+    # redis的配置
+    redis:
+      database: 0
+      host: 127.0.0.1
+      port: 6379
+      jedis:
+        pool:
+          max-wait: -1ms
+          max-idle: 8
+          max-active: 8
+      timeout: 5000ms
+      password: # 密码，如果没有的话，不用输入
+    # mysql的配置
+    datasource:
+      url: jdbc:mysql://127.0.0.1:3306/你的数据名?serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+      username: # 你的数据库账号
+      password: # 你的数据密码
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      # 配置连接池
+      druid:
+        # 下面为连接池的补充设hi在，应用到上面所有数据源中
+        initial-size: 5
+        min-idle: 5
+        max-active: 20
+        # 配置获取连接等待超时时间
+        max-wait: 60000
+        # 配置间隔多久才进行一次检测，检测需要关闭的空间连接，单位是毫秒
+        time-between-eviction-runs-millis: 60000
+        # 配置一个连接在池中最小的生存时间，单位毫秒
+        min-evictable-idle-time-millis: 300000
+        validation-query: SELECT 1 FROM DUAL
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+        # 打开PSCache，并且制定每个连接上PSCache的大小
+        pool-prepared-statements: true
+        # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+        max-pool-prepared-statement-per-connection-size: 20
+        filters: stat,wall
+        use-global-data-source-stat: true
+        # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+        connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        # 配置监控服务器
+        stat-view-servlet:
+          login-username: admin
+          login-password: 123456
+          url-pattern: /druid/*
+          reset-enable: false
+          # 添加IP白名单
+          #allow:
+          # 添加IP黑名单，当白名单和黑名单重复时，黑名单优先级更高
+          #deny:
+        web-stat-filter:
+          # 添加过滤规则
+          url-pattern: /*
+            # 忽略过滤模式
+          exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+
+     mongodb
+    data:
+      mongodb:
+        host: 127.0.0.1
+        port: 27017
+        database: # 你的mongodb连的数据库名字
+
+
+

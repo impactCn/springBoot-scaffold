@@ -1,0 +1,54 @@
+spring:
+  jackson:
+    # 修改为北京时间
+    time-zone: GMT+8
+  # 配置测试和线上文件
+  profiles:
+    active: dev
+  # 配置发送邮箱信息
+  # 在阿里云有问题，注意开启端口号
+  mail:
+    host: smtp.exmail.qq.com
+    username: # 邮箱
+    password: # 邮箱密码
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+          ssl:
+            trust: smtp.exmail.qq.com
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  # 解决一个tomcat底下跑多个项目
+  jmx:
+    enabled: false
+
+
+
+# mybatis
+mybatis:
+    # mybatis的xml文件配置
+  type-aliases-package: com.since.entity
+  mapper-locations: classpath:mapper/*.xml
+    # SQL控制台打印
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+# PageHelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+
+# 配置日志框架
+logging:
+  config: classpath:log4j2-spring.xml
+
+
+
