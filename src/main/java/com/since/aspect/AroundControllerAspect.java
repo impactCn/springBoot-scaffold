@@ -55,8 +55,9 @@ public class AroundControllerAspect {
         if (token != null) {
             if (verifyToken == null) {
                 // token有效验证
-                return new MessageVO(MessageEnums.TOKEN_ERROR.getCode(),
-                        MessageEnums.TOKEN_ERROR.getDesc());
+                return MessageVO.builder()
+                        .msgCode(MessageEnums.TOKEN_ERROR)
+                        .build();
             }
             // token签发的时间
             Date nowTime = JwtUtils.verifyToken(token).get("iat").asDate();
@@ -64,12 +65,15 @@ public class AroundControllerAspect {
             Date expireTime = JwtUtils.verifyToken(token).get("exp").asDate();
             if (expireTime.before(nowTime)) {
                 // token有效时间验证
-                return new MessageVO(MessageEnums.TOKEN_TIME_OUT.getCode(),
-                        MessageEnums.TOKEN_TIME_OUT.getDesc());
+                return MessageVO.builder()
+                        .msgCode(MessageEnums.TOKEN_TIME_OUT)
+                        .build();
             }
             // 进行在线验证
             if (line == null || "off".equals(line)) {
-                return new MessageVO(MessageEnums.OFF_LINE.getCode(), MessageEnums.OFF_LINE.getDesc());
+                return MessageVO.builder()
+                        .msgCode(MessageEnums.OFF_LINE)
+                        .build();
             }
 
             // 这里继续做检验
@@ -96,8 +100,9 @@ public class AroundControllerAspect {
 
         MessageVO messageVO = null;
         if (e instanceof Exception) {
-            messageVO.setCode(MessageEnums.API_ERROR.getCode());
-            messageVO.setMsg(MessageEnums.API_ERROR.getDesc());
+            messageVO = MessageVO.builder().
+                    msgCode(MessageEnums.API_ERROR)
+                    .build();
         }
         log.error(" 方法名：{} 接口错误信息：{}", joinPoint.getSignature().getName(), e.getMessage());
         return messageVO;

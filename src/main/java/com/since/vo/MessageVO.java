@@ -1,5 +1,7 @@
 package com.since.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.since.enums.MessageEnums;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -10,48 +12,52 @@ import java.io.Serializable;
  * @create: 2019-04-09
  */
 @ToString
-public class MessageVO<T> implements Serializable {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class MessageVO<T> implements Serializable{
 
 
+    private static final long serialVersionUID = 7366217171681294440L;
     private String code;
     private String msg;
     private T data;
 
-    public MessageVO(String code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
+    private MessageVO(Builder builder) {
+        this.code = builder.code;
+        this.msg = builder.msg;
+        this.data = (T) builder.data;
     }
 
-    public MessageVO(String code, String msg) {
-        this.code = code;
-        this.msg = msg;
+
+    /**
+     * 使用build模式，较少重复代码
+     * @return
+     */
+
+    public static MessageVO.Builder builder(){
+        return new Builder();
     }
 
-    public MessageVO() {
+    public static class Builder<T> {
+        private String code;
+        private String msg;
+        private T data;
+
+        public Builder msgCode(MessageEnums messageEnums) {
+            this.msg = messageEnums.getDesc();
+            this.code = messageEnums.getCode();
+            return this;
+        }
+
+        public Builder data(T data) {
+            this.data = data;
+            return this;
+        }
+
+        public MessageVO build() {
+            return new MessageVO(this);
+        }
+
     }
 
-    public String getCode() {
-        return code;
-    }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }

@@ -16,7 +16,7 @@ public enum MessageEnums {
     /**
      * 接口出错
      */
-    API_ERROR("111111", "API调用错误"),
+    API_ERROR("111111", "API出错"),
 
 
     /**

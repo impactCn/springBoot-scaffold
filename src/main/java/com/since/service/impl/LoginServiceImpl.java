@@ -36,15 +36,15 @@ public class LoginServiceImpl implements ILoginService {
     public MessageVO userLogin(HttpServletRequest request, String username, String password) {
         Account account = accountMapper.selectByAccount(username);
         if (account == null) {
-            return new MessageVO<String>(MessageEnums.USERNAME_NULL_ERROR.getCode(),
-                    MessageEnums.USERNAME_NULL_ERROR.getDesc());
+            return MessageVO.builder()
+                    .msgCode(MessageEnums.USERNAME_NULL_ERROR)
+                    .build();
         }
         try {
 
             // 校验账号 密码
             if (!account.getAccount().equals(username) || !MD5Utils.checkPassword(password, account.getPassword())) {
-                return new MessageVO<String>(MessageEnums.USERNAME_OR_PASSWORD_ERROR.getCode(),
-                        MessageEnums.USERNAME_OR_PASSWORD_ERROR.getDesc());
+                return null;
             }
             request.getSession().setAttribute(UserConst.ON_LINE.getKey(), UserConst.ON_LINE.getValue());
 
@@ -55,9 +55,10 @@ public class LoginServiceImpl implements ILoginService {
 
         Map<String, String> map = new HashMap<>();
         map.put("token", token);
-        return new MessageVO<Map<String, String>>(MessageEnums.LOGIN_SUCCESS.getCode(),
-                MessageEnums.LOGIN_SUCCESS.getDesc(),
-                map);
+        return MessageVO.builder()
+                .msgCode(MessageEnums.LOGIN_SUCCESS)
+                .data(map)
+                .build();
 
     }
 
@@ -66,6 +67,8 @@ public class LoginServiceImpl implements ILoginService {
         if ("on".equals(request.getSession().getAttribute("line"))) {
             request.getSession().setAttribute(UserConst.OFF_LINE.getKey(), UserConst.OFF_LINE.getValue());
         }
-        return new MessageVO(MessageEnums.LOGOUT_SUCCESS.getCode(), MessageEnums.LOGOUT_SUCCESS.getDesc());
+        return MessageVO.builder()
+                .msgCode(MessageEnums.LOGOUT_SUCCESS)
+                .build();
     }
 }

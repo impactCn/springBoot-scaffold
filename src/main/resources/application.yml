@@ -1,16 +1,15 @@
 spring:
   jackson:
-    # ĞŞ¸ÄÎª±±¾©Ê±¼ä
+    # ä¿®æ”¹ä¸ºåŒ—äº¬æ—¶é—´
     time-zone: GMT+8
-  # ÅäÖÃ²âÊÔºÍÏßÉÏÎÄ¼ş
+  # é…ç½®æµ‹è¯•å’Œçº¿ä¸Šæ–‡ä»¶
   profiles:
     active: dev
-  # ÅäÖÃ·¢ËÍÓÊÏäĞÅÏ¢
-  # ÔÚ°¢ÀïÔÆÓĞÎÊÌâ£¬×¢Òâ¿ªÆô¶Ë¿ÚºÅ
+  # é…ç½®å‘é€é‚®ç®±ä¿¡æ¯
   mail:
     host: smtp.exmail.qq.com
-    username: # ÓÊÏä
-    password: # ÓÊÏäÃÜÂë
+    username: # ä½ QQé‚®ç®±
+    password: # ä½ çš„é‚®ç®±å¯†ç 
     default-encoding: UTF-8
     properties:
       mail:
@@ -24,7 +23,7 @@ spring:
           starttls:
             enable: true
             required: true
-  # ½â¾öÒ»¸ötomcatµ×ÏÂÅÜ¶à¸öÏîÄ¿
+  # è§£å†³ä¸€ä¸ªtomcatå¤šä¸ªé¡¹ç›®é—®é¢˜
   jmx:
     enabled: false
 
@@ -32,10 +31,10 @@ spring:
 
 # mybatis
 mybatis:
-    # mybatisµÄxmlÎÄ¼şÅäÖÃ
+    # mybatisçš„xmlæ–‡ä»¶é…ç½®
   type-aliases-package: com.since.entity
   mapper-locations: classpath:mapper/*.xml
-    # SQL¿ØÖÆÌ¨´òÓ¡
+    # SQLæ§åˆ¶å°æ‰“å°
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
@@ -46,7 +45,7 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
 
-# ÅäÖÃÈÕÖ¾¿ò¼Ü
+# é…ç½®æ—¥å¿—æ¡†æ¶
 logging:
   config: classpath:log4j2-spring.xml
 
