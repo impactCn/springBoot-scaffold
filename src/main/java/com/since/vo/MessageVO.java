@@ -2,6 +2,7 @@ package com.since.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.since.enums.MessageEnums;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.io.Serializable;
  * @create: 2019-04-09
  */
 @ToString
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageVO<T> implements Serializable{
 
@@ -24,7 +26,7 @@ public class MessageVO<T> implements Serializable{
     private MessageVO(Builder builder) {
         this.code = builder.code;
         this.msg = builder.msg;
-        this.data = (T) builder.data;
+        this.data = (T)builder.data;
     }
 
 
@@ -37,6 +39,14 @@ public class MessageVO<T> implements Serializable{
         return new Builder();
     }
 
+    public static <T>MessageVO.Builder builder(T data){
+        Builder<T> builder = new Builder<>();
+        builder.data(data);
+        return builder;
+    }
+
+
+
     public static class Builder<T> {
         private String code;
         private String msg;
@@ -48,16 +58,27 @@ public class MessageVO<T> implements Serializable{
             return this;
         }
 
-        public Builder data(T data) {
-            this.data = data;
-            return this;
-        }
-
         public MessageVO build() {
             return new MessageVO(this);
         }
 
+        /**
+         * 不在对外提供，解决泛型在builder模式底下有waring
+         * @param data
+         * @return
+         */
+        private Builder<T> data(T data) {
+            this.data = data;
+            return this;
+        }
+
     }
 
+    public static void main(String[] args) {
+
+        System.err.println(MessageVO.builder("123213")
+                .msgCode(MessageEnums.API_ERROR)
+                .build().toString());
+    }
 
 }

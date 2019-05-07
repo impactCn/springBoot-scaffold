@@ -55,9 +55,8 @@ public class LoginServiceImpl implements ILoginService {
 
         Map<String, String> map = new HashMap<>();
         map.put("token", token);
-        return MessageVO.builder()
+        return MessageVO.builder(map)
                 .msgCode(MessageEnums.LOGIN_SUCCESS)
-                .data(map)
                 .build();
 
     }
