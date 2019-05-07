@@ -23,5 +23,8 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 1、在配置文件集成
 ### jwt方面
 1、可根据实际的业务修改token信息
+### schedule方法
+1、清除错误缓存  
+2、清除API记录
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07
