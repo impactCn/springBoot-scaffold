@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.since.mapper")
+@MapperScan("com.since.dao")
 public class SinceApplication {
 
     public static void main(String[] args) {

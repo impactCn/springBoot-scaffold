@@ -3,7 +3,7 @@ package com.since.service.impl;
 import com.since.entity.Account;
 import com.since.enums.MessageEnums;
 import com.since.enums.UserConst;
-import com.since.mapper.AccountMapper;
+import com.since.dao.AccountDao;
 import com.since.service.ILoginService;
 import com.since.utils.JwtUtils;
 import com.since.utils.MD5Utils;
@@ -28,13 +28,13 @@ public class LoginServiceImpl implements ILoginService {
 
 
     @Autowired
-    AccountMapper accountMapper;
+    AccountDao accountDao;
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @Cacheable(value = "login", key = "#root.methodName+ '_'+#username+'_'+#password")
     public MessageVO userLogin(HttpServletRequest request, String username, String password) {
-        Account account = accountMapper.selectByAccount(username);
+        Account account = accountDao.selectByAccount(username);
         if (account == null) {
             return MessageVO.builder()
                     .msgCode(MessageEnums.USERNAME_NULL_ERROR)

@@ -41,12 +41,12 @@
         <!--</javaModelGenerator>-->
 
         <!--&lt;!&ndash; 生成映射文件的包名和位置&ndash;&gt;-->
-        <!--<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">-->
+        <!--<sqlMapGenerator targetPackage="dao" targetProject="src/main/resources">-->
             <!--<property name="enableSubPackages" value="false"/>-->
         <!--</sqlMapGenerator>-->
 
         <!--&lt;!&ndash; 生成DAO的包名和位置&ndash;&gt;-->
-        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.since.mapper" targetProject="src/main/java">-->
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.since.daoargetProject="src/main/java">-->
             <!--<property name="enableSubPackages" value="true"/>-->
         <!--</javaClientGenerator>-->
 

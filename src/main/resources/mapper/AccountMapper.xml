@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.since.mapper.AccountMapper">
+<mapper namespace="com.since.dao.AccountDao">
   <resultMap id="BaseResultMap" type="com.since.entity.Account">
     <constructor>
       <idArg column="account_id" javaType="java.lang.Long" jdbcType="BIGINT" />

@@ -1,6 +1,6 @@
 package com.since.utils.impl;
 
-import com.since.utils.IRedisUtils;
+import com.since.utils.RedisUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @create: 2019-05-05
  */
 @Component
-public class RedisUtilsImpl implements IRedisUtils {
+public class RedisUtilsImpl implements RedisUtils {
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;

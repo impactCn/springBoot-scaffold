@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @author: SY_zheng
  * @create: 2019-05-05
  */
-public interface IMailUtils {
+public interface MailUtils {
 
     /**
      * 简单邮件发送

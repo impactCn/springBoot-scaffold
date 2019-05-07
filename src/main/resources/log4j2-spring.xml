@@ -125,7 +125,7 @@
                        如果指定了，那么会在指定的这个Appender和Root的Appender中都会输出，
                        此时我们可以设置Logger的additivity="false"只在自定义的Appender中进行输出。
         -->
-        <logger name="com.since.mapper" level="all" additivity="false">
+        <logger name="com.since.dao" level="all" additivity="false">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
         </logger>

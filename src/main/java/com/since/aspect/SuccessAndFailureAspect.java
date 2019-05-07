@@ -2,7 +2,7 @@ package com.since.aspect;
 
 import com.google.common.collect.Lists;
 import com.since.bo.MailBO;
-import com.since.utils.IMailUtils;
+import com.since.utils.MailUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -40,7 +40,7 @@ public class SuccessAndFailureAspect {
 
 
     @Autowired
-    private IMailUtils mailUtils;
+    private MailUtils mailUtils;
 
     @Pointcut("execution(* com.since.controller.*.*(..))")
     public void pointCut(){}
@@ -97,12 +97,13 @@ public class SuccessAndFailureAspect {
         }
 
 
-        MailBO mailBO = new MailBO(
-                "xxx@qq.com",
+        MailBO mailBO = new MailBO.Builder()
+                .from("xxx@qq.com")
                 // 可添加多个发送邮件对象
-                new String[]{"xxx@qq.com"},
-                subject.toString(),
-                text.toString());
+                .to(new String[]{"xxx@qq.com"})
+                .subject(subject.toString())
+                .context(text.toString())
+                .build();
         mailUtils.simpleMail(mailBO);
     }
 

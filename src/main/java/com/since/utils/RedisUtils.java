@@ -9,7 +9,7 @@ import java.util.Set;
  * @author: SY_zheng
  * @create: 2019-05-05
  */
-public interface IRedisUtils {
+public interface RedisUtils {
 
     /**
      * 指定缓存时间

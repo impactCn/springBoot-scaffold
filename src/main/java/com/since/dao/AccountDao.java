@@ -1,4 +1,4 @@
-package com.since.mapper;
+package com.since.dao;
 
 import com.since.entity.Account;
 
@@ -7,7 +7,7 @@ import com.since.entity.Account;
  * @author: SY_zheng
  * @create: 2019-05-05
  */
-public interface AccountMapper {
+public interface AccountDao {
     int deleteByPrimaryKey(Long accountId);
 
     int insert(Account record);
