@@ -48,7 +48,7 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
          */
         redisAsync.addRedisAsync("key", "value", "test2");
 
-        /**i
+        /**
          * 异步删除redis
          */
         redisAsync.deleteRedisAsync("key", "test3");
