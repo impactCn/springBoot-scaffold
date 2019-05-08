@@ -63,7 +63,7 @@ public class MessageVO<T> implements Serializable{
         }
 
         /**
-         * 不在对外提供，解决泛型在builder模式底下有waring
+         * 不在对外提供，解决泛型在builder模式底下有warning
          * @param data
          * @return
          */
