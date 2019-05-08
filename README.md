@@ -27,4 +27,33 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 1、清除错误缓存  
 2、清除API记录
 
+## 2019.05.08更新
+更新async包，里面封装异步操作redis缓存API  
+使用方法：  
+
+```
+    @Autowired
+    RedisAsync redisAsync;
+
+    @Test
+    public void test() {
+
+        /**
+         * 异步更新redis
+         */
+        redisAsync.updateRedisAsync("key", "value1", "test1");
+
+        /**
+         * 异步添加redis
+         */
+        redisAsync.addRedisAsync("key", "value", "test2");
+
+        /**i
+         * 异步删除redis
+         */
+        redisAsync.deleteRedisAsync("key", "test3");
+    }
+```
+可以和srping Cache结合使用，注意redis的key的生成策略即可。
+
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07
