@@ -12,9 +12,21 @@ import lombok.ToString;
 @ToString
 public class MailBO {
 
+    /**
+     * 发送者
+     */
     private String from;
+    /**
+     * 接受对象
+     */
     private String[] to;
+    /**
+     * 主题
+     */
     private String subject;
+    /**
+     * 内容
+     */
     private String context;
 
     public MailBO(Builder builder) {
@@ -64,6 +76,4 @@ public class MailBO {
 
     }
 
-    public MailBO() {
-    }
 }
