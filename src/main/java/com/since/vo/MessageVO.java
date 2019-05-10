@@ -2,6 +2,7 @@ package com.since.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.since.enums.MessageEnums;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  */
 @ToString
 @Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageVO<T> implements Serializable{
 
@@ -29,6 +31,12 @@ public class MessageVO<T> implements Serializable{
         this.data = (T)builder.data;
     }
 
+
+    /**
+     * 由于redis序列换是JDK序列，所以要无参构造函数给JSON调用，解决不能序列化问题
+     */
+    public MessageVO() {
+    }
 
     /**
      * 使用build模式，较少重复代码
