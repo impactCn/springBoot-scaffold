@@ -28,7 +28,7 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 2、清除API记录
 
 ## 2019.05.08更新
-更新async包，里面封装异步操作redis缓存API  
+新增async包，里面封装异步操作redis缓存API  
 使用方法：  
 
 ```
@@ -55,5 +55,8 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
     }
 ```
 可以和srping Cache结合使用，注意redis的key的生成策略即可。
+## 2019.05.10更新
+新增config底下的cors包，解决前后端测试跨域问题。解决@CrossOrigin可能无效问题。
+
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07
