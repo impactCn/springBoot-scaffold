@@ -34,7 +34,7 @@ public class LoginController {
     }
 
     @PostMapping("/logout")
-    public MessageVO userLogout(@RequestHeader("Authorization") String token, HttpServletRequest request) {
+    public MessageVO userLogout(HttpServletRequest request) {
         return iLoginService.userLogout(request);
     }
 

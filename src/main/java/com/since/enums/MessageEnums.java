@@ -31,6 +31,7 @@ public enum MessageEnums {
      */
     TOKEN_ERROR("500004", "无效token"),
     TOKEN_TIME_OUT("500008", "token超时"),
+    TOKEN_NULL_ERROR("500008", "token不能为空"),
 
     /**
      * 用户是否在线

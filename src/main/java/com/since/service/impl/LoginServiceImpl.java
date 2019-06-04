@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,12 +28,12 @@ import java.util.Map;
 public class LoginServiceImpl implements ILoginService {
 
 
-    @Autowired
-    AccountDao accountDao;
+    @Resource
+    private AccountDao accountDao;
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    @Cacheable(value = "login", key = "#root.methodName+ '_'+#username+'_'+#password")
+    @Cacheable(value = "login", key = "#request.getSession().getAttribute('account')")
     public MessageVO userLogin(HttpServletRequest request, String username, String password) {
         Account account = accountDao.selectByAccount(username);
         if (account == null) {
