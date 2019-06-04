@@ -58,5 +58,15 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 ## 2019.05.10更新
 新增config底下的cors包，解决前后端测试跨域问题，解决@CrossOrigin可能无效问题。
 
+## 2019.06.04更新
+将config底下的cors包重新命名为mvc，移除AOP处理的token，使用拦截器处理更优雅，可以在ParamsInterceptor.java类中继续写参数校验。
+同时解决了springCache的统一命名方式，解决缓存有效期问题，达到实际缓存时间效果。  
+使用方式
+```
+@Cacheable(value = "XXX方法", key = "#request.getSession().getAttribute('account')")
+   public MessageVO XXX方法(HttpServletRequest request, XXX xxx) {}
+注：XXX可自定义
+```
+
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07
