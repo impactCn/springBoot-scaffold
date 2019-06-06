@@ -68,7 +68,14 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 注：XXX可自定义
 ```
 ## 2019.06.06更新
-修复不能异步写日志
+修复不能异步写日志。  
+修复使用springCache，出现的数据库映射对象不能序列化问题。在传给前端时，同时使用了springCache的注解，
+必须要给对象无参构造方法，所以强烈建议使用lombok的  
+@Builder将对象变成构建者模式  
+@AllArgsConstructor创建一个全参构造函数  
+@NoArgsConstructor创建一个无参构造函数  
+修复redisUtils可能无效问题  
+修复代码风格  
 
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07

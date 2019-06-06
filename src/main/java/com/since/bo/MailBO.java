@@ -1,5 +1,6 @@
 package com.since.bo;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -10,6 +11,7 @@ import lombok.ToString;
  */
 @Getter
 @ToString
+@Builder
 public class MailBO {
 
     /**
@@ -29,51 +31,9 @@ public class MailBO {
      */
     private String context;
 
-    public MailBO(Builder builder) {
-        this.from = builder.from;
-        this.to = builder.to;
-        this.subject = builder.subject;
-        this.context = builder.context;
-    }
-
-    public static MailBO.Builder builder() {
-        return new Builder();
-    }
-
-    public static class Builder {
-
-        private String from;
-        private String[] to;
-        private String subject;
-        private String context;
-
-
-        public Builder from(String from) {
-            this.from = from;
-            return this;
-        }
-
-        public Builder to(String[] to) {
-            this.to = to;
-            return this;
-        }
-
-        public Builder subject(String subject) {
-            this.subject = subject;
-            return this;
-        }
-
-        public Builder context(String context) {
-            this.context = context;
-            return this;
-        }
-
-        public MailBO build() {
-            return new MailBO(this);
-        }
 
 
 
-    }
+
 
 }

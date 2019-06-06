@@ -36,7 +36,11 @@ public class SuccessAndFailureAspect {
     /**
      * 由于存在并发，选择线程安全的ConcurrentHashMap。使用全局变量记录请求的api调用情况
      */
-    public static Map<String, Integer> API_COUNT = new ConcurrentHashMap<>();
+    private Map<String, Integer> apiCount = new ConcurrentHashMap<>();
+
+    public Map<String, Integer> getAPI_COUNT() {
+        return this.apiCount;
+    }
 
 
     @Autowired
@@ -97,7 +101,7 @@ public class SuccessAndFailureAspect {
         }
 
 
-        MailBO mailBO = new MailBO.Builder()
+        MailBO mailBO = MailBO.builder()
                 .from("xxx@qq.com")
                 // 可添加多个发送邮件对象
                 .to(new String[]{"xxx@qq.com"})
@@ -118,12 +122,12 @@ public class SuccessAndFailureAspect {
         String api = joinPoint.getSignature().getName();
 
         // 计算调用情况
-        if (API_COUNT.containsKey(api)) {
-            int count = API_COUNT.get(api);
+        if (apiCount.containsKey(api)) {
+            int count = apiCount.get(api);
             count = count + 1;
-            API_COUNT.put(api, count);
+            apiCount.put(api, count);
         } else {
-            API_COUNT.put(api, 1);
+            apiCount.put(api, 1);
         }
 
     }

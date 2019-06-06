@@ -23,13 +23,7 @@ public class RedisUtilsImpl implements RedisUtils {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    private static RedisUtilsImpl redisUtils;
 
-    @PostConstruct
-    public void init() {
-        redisUtils = this;
-        redisUtils.redisTemplate = this.redisTemplate;
-    }
 
     /**
      * 指定缓存时间
