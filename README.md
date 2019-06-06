@@ -67,6 +67,8 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
    public MessageVO XXX方法(HttpServletRequest request, XXX xxx) {}
 注：XXX可自定义
 ```
+## 2019.06.06更新
+修复不能异步写日志
 
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07

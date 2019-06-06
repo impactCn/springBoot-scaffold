@@ -137,7 +137,6 @@
             <!--
                 异步打印日志。java中写日志很费时间，建议异步写日志文件
             -->
-            <appender-ref ref="async" />
         </Root>
     </Loggers>
 
