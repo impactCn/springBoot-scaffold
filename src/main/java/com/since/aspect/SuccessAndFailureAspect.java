@@ -36,10 +36,10 @@ public class SuccessAndFailureAspect {
     /**
      * 由于存在并发，选择线程安全的ConcurrentHashMap。使用全局变量记录请求的api调用情况
      */
-    private Map<String, Integer> apiCount = new ConcurrentHashMap<>();
+    private static Map<String, Integer> API_COUNT = new ConcurrentHashMap<>();
 
-    public Map<String, Integer> getAPI_COUNT() {
-        return this.apiCount;
+    public static Map<String, Integer> getAPI_COUNT() {
+        return API_COUNT;
     }
 
 
@@ -122,12 +122,12 @@ public class SuccessAndFailureAspect {
         String api = joinPoint.getSignature().getName();
 
         // 计算调用情况
-        if (apiCount.containsKey(api)) {
-            int count = apiCount.get(api);
+        if (API_COUNT.containsKey(api)) {
+            int count = API_COUNT.get(api);
             count = count + 1;
-            apiCount.put(api, count);
+            API_COUNT.put(api, count);
         } else {
-            apiCount.put(api, 1);
+            API_COUNT.put(api, 1);
         }
 
     }

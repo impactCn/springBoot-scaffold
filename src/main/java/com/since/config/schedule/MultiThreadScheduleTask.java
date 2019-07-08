@@ -45,7 +45,7 @@ public class MultiThreadScheduleTask {
     @Scheduled(cron = "0 0 0 * * ?")
     public void clearApiCount() {
         // 避免内存溢出
-        SuccessAndFailureAspect.API_COUNT.clear();
+        SuccessAndFailureAspect.getAPI_COUNT().clear();
     }
 
     /**
