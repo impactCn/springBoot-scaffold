@@ -77,5 +77,7 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 修复redisUtils可能无效问题  
 修复代码风格  
 
+## 2019.07.12更新
+重构拦截器代码，更简洁。
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07

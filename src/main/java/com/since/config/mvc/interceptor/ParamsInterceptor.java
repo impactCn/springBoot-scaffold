@@ -36,81 +36,59 @@ public class ParamsInterceptor extends HandlerInterceptorAdapter {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
 
-        JSONObject jsonObject;
 
 
 
         // 进行token验证
         Map<String, Claim> verifyToken = JwtUtils.verifyToken(token);
         if (token != null) {
-
             if (verifyToken == null) {
-                PrintWriter out = null ;
-                out = response.getWriter();
-                // token有效验证
-                jsonObject = (JSONObject)JSON.toJSON(MessageVO.builder()
-                        .msgCode(MessageEnums.TOKEN_ERROR)
-                        .build());
-                out.append(jsonObject.toString());
 
-                out.flush();
-                out.close();
-
-                return false;
+                return printJson(response, MessageEnums.TOKEN_ERROR);
             }
             // token签发的时间
             Date nowTime = JwtUtils.verifyToken(token).get("iat").asDate();
             // token过期的时间
             Date expireTime = JwtUtils.verifyToken(token).get("exp").asDate();
             if (expireTime.before(nowTime)) {
-                PrintWriter out = null ;
-                out = response.getWriter();
-                // token有效时间验证
-                jsonObject = (JSONObject)JSON.toJSON(
-                        MessageVO.builder()
-                                .msgCode(MessageEnums.TOKEN_TIME_OUT)
-                                .build());
-                out.append(jsonObject.toString());
-
-                // 关闭
-                out.flush();
-                out.close();
-
-                return false;
+                return printJson(response, MessageEnums.TOKEN_TIME_OUT);
             }
             // 进行在线验证
             if (line == null || "off".equals(line)) {
-                PrintWriter out = null;
-                out = response.getWriter();
-                jsonObject = (JSONObject)JSON.toJSON(
-                        MessageVO.builder()
-                                .msgCode(MessageEnums.OFF_LINE)
-                                .build());
-                out.append(jsonObject.toString());
-                // 关闭
-                out.flush();
-                out.close();
-                return false;
+                return printJson(response, MessageEnums.OFF_LINE);
             }
 
             // token通过验证，解析token
             request.getSession().setAttribute("account", JwtUtils.getAccount(token));
             return true;
 
-
         } else {
             PrintWriter out = null ;
-            out = response.getWriter();
-            // token为null的情况下
-            jsonObject = (JSONObject)JSON.toJSON(
-                    MessageVO.builder()
-                            .msgCode(MessageEnums.TOKEN_NULL_ERROR)
-                            .build());
-            out.append(jsonObject.toString());
 
-            out.flush();
-            out.close();
-            return false;
+            return printJson(response, MessageEnums.TOKEN_NULL_ERROR);
+
         }
+    }
+
+    /**
+     * 校验失败，直接返回相对应的msg
+     * @param response
+     * @param messageEnums
+     * @return
+     */
+    private boolean printJson(HttpServletResponse response, MessageEnums messageEnums) throws Exception{
+        JSONObject jsonObject = null;
+        PrintWriter out = null ;
+        out = response.getWriter();
+        // token有效验证
+        jsonObject = (JSONObject)JSON.toJSON(MessageVO.builder()
+                .msgCode(messageEnums)
+                .build());
+        out.append(jsonObject.toString());
+
+        out.flush();
+        out.close();
+        return false;
+
     }
 }
