@@ -14,6 +14,12 @@ public enum MessageEnums {
     LOGOUT_SUCCESS("000000", "注销登录"),
 
     /**
+     * 参数检验
+     */
+    NOT_PARAMS("000010", "参数不许为空"),
+    MORE_THAN_PARAMS("000013", "传多参数"),
+
+    /**
      * 接口出错
      */
     API_ERROR("111111", "API出错"),

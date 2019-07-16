@@ -80,4 +80,24 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 ## 2019.07.12更新
 重构拦截器代码，更简洁。
 
+## 2019.07.16更新
+重构拦截器代码，消除if嵌入。  
+新增过滤器，用于读取responseBody内的数据。  
+新增自定义注解@ObjectFilter  
+作用层：controller层。  
+功能：用于检查必传是否为空，同时可以检查是否多传不必要参数。  
+注解内部：
+ * filterParams：过滤的属性。
+ * object：检查对象。
+ 
+注：如果对象的属性都不是必传可用这个注解，如果必穿的属性不是很多可以使用JSONObject来接收。  
+   
+用法：
+```
+    @PostMapping("/XXX")
+    @ObjectFilter(filterParams = {"param1", "param2"}, object = Account.class)
+    public MessageVO addRemark(HttpServletRequest request, @RequestBody Account account) {
+    }
+```
+
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07
