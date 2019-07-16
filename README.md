@@ -99,5 +99,8 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
     public MessageVO addRemark(HttpServletRequest request, @RequestBody Account account) {
     }
 ```
+# TODO
+- [ ] 断电时：SQL语句进日志文件。
+
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07
