@@ -99,8 +99,13 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
     public MessageVO addRemark(HttpServletRequest request, @RequestBody Account account) {
     }
 ```
+## 2019.08.09更新
+重构拦截器，修改继承方式。
+新增打包成war方式。
+
 # TODO
 - [ ] 断电时：SQL语句进日志文件。
+- [ ] 将项目变成DDD设计模式。
 
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07

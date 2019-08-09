@@ -1,7 +1,6 @@
 package com.since.utils;
 
 import com.since.bo.MailBO;
-import org.springframework.stereotype.Component;
 
 /**
  * @description: 邮件工具类
@@ -15,7 +14,7 @@ public interface MailUtils {
      * @param mailBO
      * @return
      */
-    Integer simpleMail(MailBO mailBO);
+    void simpleMail(MailBO mailBO);
 
     // 这里可以继续些更多邮件发送形式
 

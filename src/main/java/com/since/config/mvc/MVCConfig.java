@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
 
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
  * @create: 2019-05-09
  */
 @Configuration
-public class MVCConfig extends WebMvcConfigurationSupport {
+public class MVCConfig implements WebMvcConfigurer {
 
     private static final String[] ORIGINS = new String[] { "GET", "POST", "PUT", "DELETE" };
 
@@ -36,12 +37,11 @@ public class MVCConfig extends WebMvcConfigurationSupport {
      * @param registry
      */
     @Override
-    protected void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(paramsInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/")
                 .excludePathPatterns("/api/login/login")
                 .excludePathPatterns("/api/login/logout");
-        super.addInterceptors(registry);
     }
 }

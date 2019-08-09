@@ -7,6 +7,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 /**
  * @description: 实现代码
  * @author: SY_zheng
@@ -15,17 +17,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class MailUtilsImpl implements MailUtils {
 
-    @Autowired
+    @Resource
     private JavaMailSender mailSender;
 
     @Override
-    public Integer simpleMail(MailBO mailBO) {
+    public void simpleMail(MailBO mailBO) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(mailBO.getFrom());
         mailMessage.setTo(mailBO.getTo());
         mailMessage.setSubject(mailBO.getSubject());
         mailMessage.setText(mailBO.getContext());
         mailSender.send(mailMessage);
-        return 0;
     }
 }
