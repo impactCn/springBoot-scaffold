@@ -33,7 +33,7 @@ public class ParamsInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        setResponse(response);
+        setResponse(response, request);
         return checkToken(request, response) &&
                 checkOnline(request, response) &&
                 checkParams(request, response, handler);
@@ -66,11 +66,17 @@ public class ParamsInterceptor extends HandlerInterceptorAdapter {
      * 重新设置response的encoding、contentType
      *
      * @param response
+     * @param request
      */
-    private void setResponse(HttpServletResponse response) {
+    private void setResponse(HttpServletResponse response, HttpServletRequest request) {
         response.reset();
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Headers", "Authorization, Origin,x-requested-with,Content-Type, Accept");
     }
 
     /**

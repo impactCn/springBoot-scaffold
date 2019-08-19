@@ -103,6 +103,9 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 重构拦截器，修改继承方式。
 新增打包成war方式。
 
+## 2019.08.19更新
+解决前端后联调的时候，出现的跨域问题。
+
 # TODO
 - [ ] 断电时：SQL语句进日志文件。
 - [ ] 将项目变成DDD设计模式。
