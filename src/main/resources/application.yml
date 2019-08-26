@@ -1,5 +1,7 @@
 spring:
   jackson:
+    # 空字段不参与序列化
+    default-property-inclusion: non_null
     # 修改为北京时间
     time-zone: GMT+8
   # 配置测试和线上文件
