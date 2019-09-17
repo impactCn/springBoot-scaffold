@@ -112,6 +112,9 @@ springBoot2.1.x脚手架，集成redis、pagehelper、mongodb、mybatis、log4j2
 # TODO
 - [ ] 断电时：SQL语句进日志文件。
 - [ ] 将项目变成DDD设计模式。
+- [ ] 部署多级缓存，实现先查询本地Caffeins缓存，再查询redis缓存，以注解的形式存在。
+- [ ] 完善监控功能，具备日活量、5分钟API情况。
+- [ ] 引入SpringCloud Alibaba将项目升级成微服务架构。  
 
 
 # 最后，如果这个项目对您有参考价值，请不要吝啬您的star。您star就是对我最大鼓励。 2019.05.07
